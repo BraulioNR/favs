@@ -1,0 +1,21 @@
+{
+  "name": "favs",
+  "version": "1.0.0",
+  "description": "Initial version of API FAVS",
+  "main": "src/server.js",
+  "repository": "https://github.com/BraulioNR/favs-back.git",
+  "author": "BraulioNR <branoleruiz@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "dotenv": "^14.3.2",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
