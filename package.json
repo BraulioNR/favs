@@ -6,15 +6,23 @@
   "repository": "https://github.com/BraulioNR/favs-back.git",
   "author": "BraulioNR <branoleruiz@gmail.com>",
   "license": "MIT",
+  "engine":{
+    "node": "16.6.2",
+    "yarn": "1.22.17",
+    "npm": "7.20.3"
+  },
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^14.3.2",
     "express": "^4.17.3",
-    "mongoose": "^6.2.4"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.4",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
