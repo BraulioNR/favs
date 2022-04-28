@@ -1,4 +1,3 @@
-//Cada fav tendrá un título, descripción y enlace,
 const { Schema, model } = require("mongoose")
 
 const favSchema = new Schema(
@@ -18,10 +17,15 @@ const favSchema = new Schema(
       required: [true, "The link is required"],
       trim: true,
     },
-    itsList: {
+    listId: {
       type: Schema.Types.ObjectId,
       ref: "List",
       required: [true, "The list's id is required "],
+    },
+    creator: {
+      type: Schema.Types.ObjectId,
+      required: [true, "The creator's id is required"],
+      ref: "User",
     },
   },
   { timestamps: true }

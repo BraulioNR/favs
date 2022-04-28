@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt")
 const emailRegexp =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const passwordRegexp =
-  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+  /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,}$/
 const userSchema = new Schema(
   {
     name: {
@@ -21,7 +21,7 @@ const userSchema = new Schema(
       type: String,
       required: [true, "The email is required"],
       trim: true,
-      match: emailRegexp,
+      match: [emailRegexp, "The email format is invalid"],
       validate: [
         {
           async validator(email) {
@@ -38,8 +38,8 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      match: passwordRegexp,
       required: [true, "The password is required"],
+      match: [passwordRegexp, "The password is insecure"],
     },
     lists: {
       type: [
