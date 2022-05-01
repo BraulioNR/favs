@@ -32,7 +32,7 @@ exports.login = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
       expiresIn: 60 * 60 * 24 * 365,
     })
-    res.status(200).json({ token })
+    res.status(201).json({ token })
   } catch (e) {
     res.status(400).json({ error: e.message })
   }

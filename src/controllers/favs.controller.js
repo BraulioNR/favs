@@ -9,12 +9,13 @@ exports.create = async (req, res) => {
     } = req
     const list = await List.findById(listId)
     if (!list) {
-      throw new Error("List invalid")
+      res.status(403).json({ message: "List invalid" })
+      return
     }
     const fav = await Fav.create({ ...rest, listId: listId, creator: userId })
     list.favs.push(fav._id)
     await list.save({ validateBeforeSave: false })
-    res.status(200).json({ message: "Fav created", fav })
+    res.status(201).json({ message: "Fav created", fav })
   } catch (e) {
     res.status(400).json({ error: e.message })
   }
@@ -28,9 +29,10 @@ exports.show = async (req, res) => {
     } = req
     const fav = await Fav.findOne({ _id: id, creator: userId })
     if (!fav) {
-      throw new Error("Fav invalid")
+      res.status(403).json({ message: "List invalid" })
+      return
     }
-    res.status(200).json({ message: "Fav found", fav })
+    res.status(201).json({ message: "Fav found", fav })
   } catch (e) {
     res.status(400).json({ error: e.message })
   }
@@ -49,7 +51,7 @@ exports.update = async (req, res) => {
       res.status(403).json({ message: "Fav did not update" })
       return
     }
-    res.status(200).json({ message: "Fav updated", fav })
+    res.status(201).json({ message: "Fav updated", fav })
   } catch (e) {
     res.status(400).json({ error: "An error has occurred", e })
   }
@@ -64,8 +66,9 @@ exports.destroy = async (req, res) => {
     const fav = await Fav.findOneAndDelete({ _id: id, creator: userId })
     if (!fav) {
       res.status(403).json({ message: "Fav did not delete" })
+      return
     }
-    res.status(200).json({ message: "Fav deleted", fav })
+    res.status(201).json({ message: "Fav deleted", fav })
   } catch (e) {
     res.status(400).json({ error: e.message })
   }
@@ -77,7 +80,7 @@ exports.list = async (req, res) => {
     const favs = await Fav.find({ creator: userId })
       .select("title description link listId")
       .populate("listId", "name")
-    res.status(200).json({ message: `${favs.length} favs found`, favs })
+    res.status(201).json({ message: `${favs.length} favs found`, favs })
   } catch (e) {
     res.status(500).json({ error: e.message })
   }

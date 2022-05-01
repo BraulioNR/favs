@@ -7,16 +7,6 @@ const passwordRegexp =
   /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,}$/
 const userSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: [true, "The name is required"],
-      trim: true,
-    },
-    lastname: {
-      type: String,
-      required: [true, "The lastname is required"],
-      trim: true,
-    },
     email: {
       type: String,
       required: [true, "The email is required"],
