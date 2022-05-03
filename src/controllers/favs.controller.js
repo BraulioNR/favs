@@ -1,6 +1,7 @@
 const Fav = require("../models/favs.model")
 const List = require("../models/lists.models")
 
+/* This is a function that creates a new fav. */
 exports.create = async (req, res) => {
   try {
     const {
@@ -21,6 +22,7 @@ exports.create = async (req, res) => {
   }
 }
 
+/* This is a function that finds a fav by id and returns it. */
 exports.show = async (req, res) => {
   try {
     const {
@@ -37,6 +39,7 @@ exports.show = async (req, res) => {
     res.status(400).json({ error: e.message })
   }
 }
+/* This is a function that finds a fav by id and updates it. */
 exports.update = async (req, res) => {
   const {
     body,
@@ -57,6 +60,7 @@ exports.update = async (req, res) => {
   }
 }
 
+/* A function that finds a fav by id and deletes it. */
 exports.destroy = async (req, res) => {
   try {
     const {
@@ -74,6 +78,7 @@ exports.destroy = async (req, res) => {
   }
 }
 
+/* This is a function that finds all favs by userId and returns them. */
 exports.list = async (req, res) => {
   try {
     const { userId } = req

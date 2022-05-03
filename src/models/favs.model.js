@@ -1,5 +1,7 @@
+/* Destructuring the Schema and model from the mongoose package. */
 const { Schema, model } = require("mongoose")
 
+/* Creating a schema for the fav model. */
 const favSchema = new Schema(
   {
     title: {

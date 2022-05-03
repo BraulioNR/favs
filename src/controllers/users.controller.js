@@ -2,6 +2,7 @@ const User = require("../models/users.model")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
+/* This is the signup function. It is creating a new user and returning a token. */
 exports.signup = async (req, res) => {
   try {
     const { body } = req
@@ -15,6 +16,7 @@ exports.signup = async (req, res) => {
   }
 }
 
+/* This is the login function. Checking if the user exists and if the password is valid. If it is, it returns a token, else return Error. */
 exports.login = async (req, res) => {
   try {
     const {

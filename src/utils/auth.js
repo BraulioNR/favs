@@ -1,5 +1,7 @@
+/* Importing the jsonwebtoken library. */
 const jwt = require("jsonwebtoken")
 
+/* A middleware function that checks if the user is authenticated, obtains the token, extracts the id with the secret key, and sets in req */
 exports.isAuthenticated = (req, res, next) => {
   const { authorization } = req.headers
 

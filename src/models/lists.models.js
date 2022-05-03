@@ -1,6 +1,6 @@
-//cada lista se definirá por una identificación única y un nombre.
 const { Schema, model } = require("mongoose")
 
+/* Creating a schema for the list model. */
 const listSchema = new Schema(
   {
     name: {

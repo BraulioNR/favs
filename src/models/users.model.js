@@ -1,10 +1,13 @@
 const { Schema, model, models } = require("mongoose")
 const bcrypt = require("bcrypt")
 
+/* A regular expression that checks if the email and password are valid. */
 const emailRegexp =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const passwordRegexp =
   /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,}$/
+
+/* Creating a schema for the user model. */
 const userSchema = new Schema(
   {
     email: {
@@ -43,6 +46,8 @@ const userSchema = new Schema(
   { timestamps: true }
 )
 
+/* A middleware that is executed before the user is saved to the database. It checks if the password
+has been modified and if it has, it hashes it. */
 userSchema.pre("save", async function () {
   if (this.password && this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 10)

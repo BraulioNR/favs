@@ -1,6 +1,7 @@
 const List = require("../models/lists.models")
 const User = require("../models/users.model")
 
+/* This is a function that creates a list. */
 exports.create = async (req, res) => {
   try {
     const { body, userId } = req
@@ -18,6 +19,7 @@ exports.create = async (req, res) => {
   }
 }
 
+/* This is a function that returns all the lists of a user. */
 exports.list = async (req, res) => {
   try {
     const { userId } = req
@@ -27,6 +29,7 @@ exports.list = async (req, res) => {
     res.status(401).json({ error: e.message })
   }
 }
+/* This is a function that returns a list of a user. */
 exports.show = async (req, res) => {
   try {
     const {
@@ -46,6 +49,7 @@ exports.show = async (req, res) => {
   }
 }
 
+/* A function that deletes a list. */
 exports.destroy = async (req, res) => {
   try {
     const {
@@ -63,6 +67,7 @@ exports.destroy = async (req, res) => {
   }
 }
 
+/* A function that updates a list. */
 exports.update = async (req, res) => {
   const {
     body,
